@@ -6,11 +6,11 @@ import {
   Delete,
   Param,
   Body,
-  HttpCode
+  HttpCode,
 } from '@nestjs/common';
-// this is know as controller, get and post decorator.
 import { data, ReportType } from './data';
 import { v4 as uuid } from 'uuid';
+
 
 @Controller('report/:type')
 export class AppController {
@@ -22,7 +22,6 @@ export class AppController {
     return data.report.filter((report) => report.type === reporttype);
   }
 
-  // get request on specific id's
   @Get(':id')
   incomeReport(@Param('type') type: string, @Param('id') id: string) {
     const reporttype =
@@ -32,7 +31,6 @@ export class AppController {
       .find((report) => report.id === id);
   }
 
-  //post request ( requesting the data from the user.)
   @Post()
   CreateReport(
     @Body() { amount, source }: { source: string; amount: number },
@@ -51,7 +49,7 @@ export class AppController {
     return newReport;
   }
 
-  // put request ( used for updating the data. )
+  
   @Put(':id')
   updateReport(
     @Param('type') type: string,
@@ -75,28 +73,22 @@ export class AppController {
     return data.report[reportIndex];
   }
 
-
-  /// delete method.
   @HttpCode(204)
   @Delete(':id')
-  deleteReport(
-    @Param('id') id : string
-  ) {
-    const reportIndex = data.report.findIndex(report => report.id === id);
+  deleteReport(@Param('id') id: string) {
+    const reportIndex = data.report.findIndex((report) => report.id === id);
 
-    if(reportIndex === -1) return;
-    
-    
-    data.report.splice(reportIndex, 1)
+    if (reportIndex === -1) return;
+
+    data.report.splice(reportIndex, 1);
     return;
-    
   }
 }
 
-// controller help to appent the url path
-// write in the controller (report/income)
-// http://localhost:3000/report/income
+// controller help to append the url path.
+// write in the controller (report/income).
+// http://localhost:3000/report/income.
 
 // if we set @controller("url/path") it works on every url request append after the PORT number and thier specific url path append.
 
-/// get request by id : http://localhost:3000/reports/income/dhhdihfdh
+/// get request by id : http://localhost:3000/reports/income/dhsdh332323@ghadf
