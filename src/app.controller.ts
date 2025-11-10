@@ -14,7 +14,7 @@ import { v4 as uuid } from 'uuid';
 
 @Controller('report/:type')
 export class AppController {
-  // Get request
+  // Get request [ 'report/:type' ]
   @Get()
   getallReports(@Param('type') type: string) {
     const reporttype =
@@ -22,6 +22,7 @@ export class AppController {
     return data.report.filter((report) => report.type === reporttype);
   }
 
+  // get request: ['report/:type/:id']
   @Get(':id')
   incomeReport(@Param('type') type: string, @Param('id') id: string) {
     const reporttype =
@@ -31,6 +32,7 @@ export class AppController {
       .find((report) => report.id === id);
   }
 
+  // post request: ['report/:type/'] post the data from the frontend to the backend
   @Post()
   CreateReport(
     @Body() { amount, source }: { source: string; amount: number },
