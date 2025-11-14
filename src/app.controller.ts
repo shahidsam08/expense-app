@@ -11,7 +11,6 @@ import {
 import { data, ReportType } from './data';
 import { v4 as uuid } from 'uuid';
 
-
 @Controller('report/:type')
 export class AppController {
   // Get request [ 'report/:type' ]
@@ -51,7 +50,6 @@ export class AppController {
     return newReport;
   }
 
-  
   @Put(':id')
   updateReport(
     @Param('type') type: string,
@@ -95,6 +93,4 @@ export class AppController {
 
 /// get request by id : http://localhost:3000/reports/income/dhsdh332323@ghadf
 
-
 // This is new commit data which I want to delete using the git revert.
-
