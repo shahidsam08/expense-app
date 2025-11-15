@@ -7,5 +7,6 @@ async function bootstrap() {
   
 }
 bootstrap()
+// this  is main entry point in the nest js app.
 
 
